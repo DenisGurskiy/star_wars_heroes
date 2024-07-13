@@ -2,7 +2,7 @@
 
 import { Hero } from "@/types/hero";
 import axios from "axios";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroItem from "./HeroItem";
 import { Loader } from "./UI/loader";
 

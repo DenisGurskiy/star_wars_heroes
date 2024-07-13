@@ -1,4 +1,3 @@
-import React from "react";
 import { Hero } from "@/types/hero";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
