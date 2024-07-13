@@ -3,9 +3,36 @@ import { Hero } from "@/types/hero";
 import { Starship } from "@/types/starship";
 import axios from "axios";
 
-export async function getHeroData(id: number): Promise<Hero | null> {
+interface ApiResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Hero[];
+}
+
+export async function getAllHeroes(): Promise<Hero[] | null> {
+  let allHeroes: Hero[] = [];
+  let nextUrl: string | null = "https://sw-api.starnavi.io/people/?page=1";
+
   try {
-    const response = await axios.get(`https://sw-api.starnavi.io/people/${id}`);
+    while (nextUrl) {
+      const response = await axios.get<ApiResponse>(nextUrl);
+      const data: ApiResponse = response.data;
+      allHeroes = allHeroes.concat(data.results);
+      nextUrl = data.next;
+    }
+    return allHeroes;
+  } catch (error) {
+    console.error("Error fetching hero data:", error);
+    return null;
+  }
+}
+
+export async function getHeroById(id: number): Promise<Hero | null> {
+  try {
+    const response = await axios.get<Hero>(
+      `https://sw-api.starnavi.io/people/${id}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching hero data:", error);

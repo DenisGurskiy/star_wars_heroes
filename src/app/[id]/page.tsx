@@ -1,7 +1,13 @@
 import React from "react";
 import { Background, ReactFlow } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { getFilmById, getHeroData, getStarShipById } from "@/services/api";
+import {
+  getAllHeroes,
+  getFilmById,
+  getHeroById,
+  getStarShipById,
+} from "@/services/api";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -9,9 +15,23 @@ type Props = {
   };
 };
 
+export const dynamicParams = true;
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const heroes = await getAllHeroes();
+
+  if (!heroes) {
+    return [];
+  }
+
+  return heroes.map((hero) => ({
+    slug: hero.id.toString(),
+  }));
+}
+
 const Hero = async ({ params: { id } }: Props) => {
-  const hero = await getHeroData(id);
-  
+  const hero = await getHeroById(id);
+
   const startPointX = 500;
   const startPointY = 100;
   const filmSpacing = 200;
@@ -86,11 +106,14 @@ const Hero = async ({ params: { id } }: Props) => {
   ];
 
   return (
-    <div className="w-full h-screen bg-white">
-      <ReactFlow nodes={nodes} edges={edges}>
-        <Background />
-      </ReactFlow>
-    </div>
+    <>
+      <Link href="/">Back</Link>
+      <div className="w-full h-screen bg-white">
+        <ReactFlow nodes={nodes} edges={edges}>
+          <Background />
+        </ReactFlow>
+      </div>
+    </>
   );
 };
 

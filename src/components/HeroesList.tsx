@@ -12,38 +12,31 @@ function HeroesList() {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-  const initialLoad = useRef(true);
-
-  const fetchHeroes = useCallback(() => {
-    setLoading(true);
-    axios
-      .get(`https://sw-api.starnavi.io/people?page=${currentPage}`)
-      .then((response) => {
-        setHeroes((prevHeroes) => [...prevHeroes, ...response.data.results]);
-        setCurrentPage((prevPage) => prevPage + 1);
-        setTotalCount(response.data.count);
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
-  }, [currentPage]);
 
   useEffect(() => {
-    if (initialLoad.current) {
-      initialLoad.current = false;
-      fetchHeroes();
+    if (loading) {
+      axios
+        .get(`https://sw-api.starnavi.io/people?page=${currentPage}`)
+        .then((response) => {
+          setHeroes((prevHeroes) => [...prevHeroes, ...response.data.results]);
+          setCurrentPage((prevPage) => prevPage + 1);
+          setTotalCount(response.data.count);
+        })
+        .catch((error) => setError(error.message))
+        .finally(() => setLoading(false));
     }
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     const scrollHandler = () => {
       if (
         document.documentElement.scrollHeight -
           (document.documentElement.scrollTop + window.innerHeight) <
-          100 &&
+          200 &&
         heroes.length < totalCount &&
         !loading
       ) {
-        fetchHeroes();
+        setLoading(true);
       }
     };
 
@@ -52,7 +45,7 @@ function HeroesList() {
     return () => {
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, [fetchHeroes, heroes, totalCount, loading]);
+  }, [heroes]);
 
   if (error) return <div>{error}</div>;
 
