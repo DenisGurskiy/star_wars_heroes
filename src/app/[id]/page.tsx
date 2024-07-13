@@ -13,9 +13,6 @@ type Props = {
   };
 };
 
-export const dynamicParams = true;
-export const revalidate = 3600;
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const heroes = await getAllHeroes();
 
