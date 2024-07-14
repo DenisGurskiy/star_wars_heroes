@@ -21,7 +21,8 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
     Hero | Film | Starship | null
   >(null);
 
-  const startPointX = window.innerWidth / 2 - 75;
+  // const startPointX = window.innerWidth / 2 - 75;
+  const startPointX = 300;
   const startPointY = 100;
   const filmSpacing = 200;
   const starshipSpacing = 200;
