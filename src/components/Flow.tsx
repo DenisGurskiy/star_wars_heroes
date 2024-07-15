@@ -10,22 +10,25 @@ import { Modal } from "./UI/modal";
 import { useState } from "react";
 import { HeroType } from "@/types/heroType";
 
+// Define the props type for the Flow component
 type FlowProps = {
   hero: HeroType;
   films: Film[];
   starships: Starship[];
 };
 
+// Functional component to render the flow diagram
 export const Flow = ({ hero, films, starships }: FlowProps) => {
   const [modalContent, setModalContent] = useState<
     HeroType | Film | Starship | null
-  >(null);
+  >(null); // State to manage the content of the modal
 
-  const startPointX = 300;
-  const startPointY = 100;
-  const filmSpacing = 200;
-  const starshipSpacing = 200;
+  const startPointX = 300; // X-coordinate for the starting point
+  const startPointY = 100; // Y-coordinate for the starting point
+  const filmSpacing = 200; // Spacing between film nodes
+  const starshipSpacing = 200; // Spacing between starship nodes
 
+  // Create an array of nodes for the flow diagram
   const nodes: ReactFlowNode[] = [
     {
       id: hero.id.toString(),
@@ -59,6 +62,7 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
     })),
   ];
 
+  // Create an array of edges for the flow diagram
   const edges: ReactFlowEdge[] = [
     ...films.map((film) => ({
       id: `hero to film-${film?.id}`,
@@ -74,6 +78,7 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
     ),
   ];
 
+  // Function to handle node clicks and set the modal content accordingly
   const onClickNode = (node: ReactFlowNode) => {
     const nodeId = node.id;
 
@@ -104,6 +109,7 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
   return (
     <>
       <div className="w-full h-screen bg-white">
+        {/* Render the ReactFlow component with nodes and edges */}
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -112,6 +118,7 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
           <Background />
         </ReactFlow>
       </div>
+      {/* Render the modal if modalContent is not null */}
       {modalContent && (
         <>
           <div className="sr-only" data-testid="modal-content"></div>
