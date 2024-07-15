@@ -14,6 +14,7 @@ export const Modal: FC<Props> = ({ elem, closeModal }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
+        data-testid="modal-background"
         className="fixed inset-0 bg-slate-400 bg-opacity-50"
         onClick={() => closeModal(null)}
       ></div>

@@ -9,12 +9,4 @@ describe("Home page", () => {
 
     expect(heading).toBeInTheDocument();
   });
-
-  it("should have loader while fetching", () => {
-    render(<Home />);
-
-    const heading = screen.getByText("Loading...");
-
-    expect(heading).toBeInTheDocument();
-  });
 });

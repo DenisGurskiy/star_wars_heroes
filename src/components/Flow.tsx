@@ -21,7 +21,6 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
     Hero | Film | Starship | null
   >(null);
 
-  // const startPointX = window.innerWidth / 2 - 75;
   const startPointX = 300;
   const startPointY = 100;
   const filmSpacing = 200;
@@ -114,7 +113,10 @@ export const Flow = ({ hero, films, starships }: FlowProps) => {
         </ReactFlow>
       </div>
       {modalContent && (
-        <Modal elem={modalContent} closeModal={setModalContent} />
+        <>
+          <div className="sr-only" data-testid="modal-content"></div>
+          <Modal elem={modalContent} closeModal={setModalContent} />
+        </>
       )}
     </>
   );
