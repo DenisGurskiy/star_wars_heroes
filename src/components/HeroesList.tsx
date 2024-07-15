@@ -30,7 +30,7 @@ function HeroesList() {
         .catch((error) => setError(error.message)) // Set error state if an error occurs
         .finally(() => setLoading(false)); // Set loading state to false after the data is fetched
     }
-  }, [loading]);
+  }, [loading, currentPage]);
 
   // useEffect to handle infinite scrolling
   useEffect(() => {
@@ -54,7 +54,7 @@ function HeroesList() {
     return () => {
       document.removeEventListener("scroll", scrollHandler);
     };
-  }, [heroes]);
+  }, [heroes, loading, totalCount]);
 
   // Render error message if an error occurs
   if (error) return <div>{error}</div>;
