@@ -1,5 +1,5 @@
 import { Film } from "@/types/film";
-import { Hero } from "@/types/hero";
+import { HeroType } from "@/types/heroType";
 import { Starship } from "@/types/starship";
 import axios from "axios";
 
@@ -7,11 +7,11 @@ interface ApiResponse {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Hero[];
+  results: HeroType[];
 }
 
-export async function getAllHeroes(): Promise<Hero[] | null> {
-  let allHeroes: Hero[] = [];
+export async function getAllHeroes(): Promise<HeroType[] | null> {
+  let allHeroes: HeroType[] = [];
   let nextUrl: string | null = "https://sw-api.starnavi.io/people/?page=1";
 
   try {
@@ -28,9 +28,9 @@ export async function getAllHeroes(): Promise<Hero[] | null> {
   }
 }
 
-export async function getHeroById(id: number): Promise<Hero | null> {
+export async function getHeroById(id: number): Promise<HeroType | null> {
   try {
-    const response = await axios.get<Hero>(
+    const response = await axios.get<HeroType>(
       `https://sw-api.starnavi.io/people/${id}`
     );
     return response.data;

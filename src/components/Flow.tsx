@@ -7,18 +7,18 @@ import { Starship } from "@/types/starship";
 import { Background, ReactFlow } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Modal } from "./UI/modal";
-import { Hero } from "@/types/hero";
 import { useState } from "react";
+import { HeroType } from "@/types/heroType";
 
 type FlowProps = {
-  hero: Hero;
+  hero: HeroType;
   films: Film[];
   starships: Starship[];
 };
 
 export const Flow = ({ hero, films, starships }: FlowProps) => {
   const [modalContent, setModalContent] = useState<
-    Hero | Film | Starship | null
+    HeroType | Film | Starship | null
   >(null);
 
   const startPointX = 300;

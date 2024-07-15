@@ -1,13 +1,13 @@
 "use client";
 
-import { Hero } from "@/types/hero";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HeroItem from "./HeroItem";
 import { Loader } from "./UI/loader";
+import { HeroType } from "@/types/heroType";
 
 function HeroesList() {
-  const [heroes, setHeroes] = useState<Hero[]>([]);
+  const [heroes, setHeroes] = useState<HeroType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);

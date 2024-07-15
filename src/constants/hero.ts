@@ -1,6 +1,6 @@
-import { Hero } from "@/types/hero";
+import { HeroType } from "@/types/heroType";
 
-export const hero: Hero = {
+export const hero: HeroType = {
   id: 13,
   name: "Chewbacca",
   height: "228",

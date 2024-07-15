@@ -1,4 +1,4 @@
-export type Hero = {
+export type HeroType = {
   id: number;
   name: string;
   height: string;

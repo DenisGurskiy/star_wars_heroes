@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import HeroItem from "@/components/HeroItem";
-import { Hero } from "@/types/hero";
 import { hero } from "@/constants/hero";
+import { HeroType } from "@/types/heroType";
 
 describe("HeroItem component", () => {
-
   it("should renders corectly", () => {
     render(<HeroItem hero={hero} />);
 
@@ -35,7 +34,7 @@ describe("HeroItem component", () => {
   });
 
   it("should not render gender, height, or mass if they are 'unknown'", () => {
-    const newHero: Hero = {
+    const newHero: HeroType = {
       ...hero,
       gender: "unknown",
       height: "unknown",

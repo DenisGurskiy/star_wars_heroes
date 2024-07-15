@@ -1,11 +1,11 @@
 import { Film } from "@/types/film";
-import { Hero } from "@/types/hero";
+import { HeroType } from "@/types/heroType";
 import { Starship } from "@/types/starship";
 import React, { FC } from "react";
 
 type Props = {
-  elem: Film | Starship | Hero;
-  closeModal: (value: Film | Starship | Hero | null) => void;
+  elem: Film | Starship | HeroType;
+  closeModal: (value: Film | Starship | HeroType | null) => void;
 };
 
 export const Modal: FC<Props> = ({ elem, closeModal }) => {

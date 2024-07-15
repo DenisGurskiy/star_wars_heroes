@@ -1,4 +1,3 @@
-import { Hero } from "@/types/hero";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faVenusMars,
@@ -6,9 +5,10 @@ import {
   faWeightHanging,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { HeroType } from "@/types/heroType";
 
 type Props = {
-  hero: Hero;
+  hero: HeroType;
 };
 
 function HeroItem({ hero }: Props) {
