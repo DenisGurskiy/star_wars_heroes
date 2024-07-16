@@ -23,7 +23,7 @@ export const Modal: FC<Props> = ({ elem, closeModal }) => {
         onClick={() => closeModal(null)}
       ></div>
       {/* Modal content container */}
-      <div className="w-3/4 h-auto absolute z-50 rounded-lg m-4 bg-gray-800 border border-yellow-500 shadow-lg p-6 max-w-lg mx-auto overflow-y-auto max-h-dvh">
+      <div className="w-3/4 h-auto absolute z-50 rounded-lg m-4 bg-gray-800 border border-yellow-500 shadow-lg p-6 max-w-screen-lg mx-auto overflow-y-auto max-h-dvh">
         {/* Close button */}
         <div className="w-full flex justify-end">
           <button
